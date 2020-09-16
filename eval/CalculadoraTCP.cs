@@ -20,7 +20,6 @@ namespace eval
             server.Start();
             for(var i = 0; i < 1000; i++){
                 Thread client = new Thread(executeClient);
-                // client.Start(i.ToString() + "+2");
                 client.Start(i.ToString() + "2*2");
             }
         }
