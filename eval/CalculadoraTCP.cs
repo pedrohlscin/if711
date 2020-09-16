@@ -14,8 +14,8 @@ namespace eval
         private static IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
         private static IPAddress iPAddress = ipHost.AddressList[0];
         private static IPEndPoint localEndPoint = new IPEndPoint(iPAddress, PORT);
-        private static int qtdClients = 1;
-        private static int qtdIteracoes = 10000;
+        private static int qtdClients = 10;
+        private static int qtdIteracoes = 10000/qtdClients;
 
         public static long amountOfTimeEllapsed = 0;
         public static List<long> executions = new List<long>();

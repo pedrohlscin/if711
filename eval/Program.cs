@@ -10,12 +10,18 @@ namespace eval
     {
         static void Main(string[] args)
         {
-            startTcp();
+            startUdp();
+        }
+
+        private static void startUdp()
+        {
+            Thread program = new Thread(CalculadoraUDP.runCalculadoraUdp);
+            program.Start();
         }
 
         private static void startTcp(){
-            Thread server = new Thread(CalculadoraTCP.runCalculadoraTcp);
-            server.Start();
+            Thread program = new Thread(CalculadoraTCP.runCalculadoraTcp);
+            program.Start();
         }
     }
 }
