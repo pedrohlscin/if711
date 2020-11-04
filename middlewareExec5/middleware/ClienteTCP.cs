@@ -16,21 +16,21 @@ namespace middleware
         private static IPEndPoint localEndPoint = new IPEndPoint(iPAddress, PORT);
 
 
-        public Socket Connect(IPAddress iPAddress, IPEndPoint localEndPoint)
-        {
-            try
-            {
-                Socket sender = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                sender.Connect(localEndPoint);
-                Console.WriteLine("Conexão Estabelecida");
-                return sender;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+        //public Socket Connect(IPAddress iPAddress, IPEndPoint localEndPoint)
+        //{
+        //    try
+        //    {
+        //        Socket sender = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        //        sender.Connect(localEndPoint);
+        //        Console.WriteLine("Conexão Estabelecida");
+        //        return sender;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
 
-        }
+        //}
 
     }
 }
