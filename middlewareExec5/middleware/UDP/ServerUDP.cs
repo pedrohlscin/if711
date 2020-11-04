@@ -13,7 +13,7 @@ namespace middleware
         public void ReceiveSend()
         {
             UdpClient udpServer = new UdpClient(listenPort);
-            var programaServidorUDP = new ProgramaServidorUDP();
+            var programaServidorUDP = new ProgramaServidorTCP();
 
             while (true)
             {

@@ -4,24 +4,24 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 
-namespace middleware.UDP
+namespace middleware.TCP
 {
-    class RunUDP
+    class RunTCP
     {
         public static long amountOfTimeEllapsed = 0;
         public static List<long> executions = new List<long>();
 
-        public static void startUDP(int qtdClients)
+        public static void startTCP(int qtdClients)
         {
-            var sUDP = new ServerUDP();
-            Thread serverUdp = new Thread(sUDP.ReceiveSend);
-            serverUdp.Start();
+            var sTCP = new ServerTCP();
+            Thread serverTcp = new Thread(sTCP.ReceiveSend);
+            serverTcp.Start();
             Thread[] clients = new Thread[qtdClients];
             Stopwatch watch = Stopwatch.StartNew();
             for (var i = 0; i < qtdClients; i++)
             {
-                var cUDP = new ProgramaClienteTCP();
-                clients[i] = new Thread(cUDP.Main);
+                var cTCP = new ProgramaClienteTCP();
+                clients[i] = new Thread(cTCP.Main);
                 clients[i].Start();
             }
 
