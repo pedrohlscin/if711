@@ -7,13 +7,23 @@ namespace middleware.UDP
 {
     class RunUDP
     {
-        public static void startUDP()
+        public static void startUDP(int qtdClients)
         {
             var sUDP = new ServerUDP();
             Thread serverUdp = new Thread(sUDP.ReceiveSend);
             serverUdp.Start();
-            var cUDP = new ProgramaClienteUDP();
-            cUDP.Main();
+            Thread[] clients = new Thread[qtdClients];
+            for(var i = 0; i < qtdClients; i++)
+            {
+                var cUDP = new ProgramaClienteUDP();
+                clients[i] = new Thread(cUDP.Main);
+                clients[i].Start();
+            }
+
+            for (var i = 0; i < qtdClients; i++)
+            {
+                clients[i].Join();
+            }
         }
 
     }
