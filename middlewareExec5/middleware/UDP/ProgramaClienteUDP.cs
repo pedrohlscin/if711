@@ -8,10 +8,13 @@ namespace middleware.UDP
     {
         public void Main()
         {
-            var clientRequestHandler = new ClientUDP();
-            byte[] envio = System.Text.ASCIIEncoding.ASCII.GetBytes("1*2+3");
-            var mensagem = clientRequestHandler.sendReceive(envio);
-            Console.WriteLine(System.Text.ASCIIEncoding.ASCII.GetString(mensagem));
+            for(var i = 0; i < 10000; i++)
+            {
+                var clientRequestHandler = new ClientUDP();
+                byte[] envio = System.Text.ASCIIEncoding.ASCII.GetBytes(i + "*2+1");
+                var mensagem = clientRequestHandler.sendReceive(envio);
+                //Console.WriteLine(System.Text.ASCIIEncoding.ASCII.GetString(mensagem));
+            }
         }
     }
 }
