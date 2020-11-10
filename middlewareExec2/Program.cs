@@ -8,7 +8,7 @@ namespace middlewareExec2
     {
         static void Main(string[] args)
         {
-            startTcp();
+            startUdp();
         }
 
         private static void startUdp()
