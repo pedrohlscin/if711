@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Exerc2
+namespace middlewareExec2
 {
     class Program
     {
