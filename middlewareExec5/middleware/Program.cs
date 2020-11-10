@@ -8,7 +8,7 @@ namespace middleware
     {
         static void Main(string[] args)
         {
-            int qtdClients = 10;
+            int qtdClients = 1;
             //RunUDP.startUDP(qtdClients);
             RunTCP.startTCP(qtdClients);
             //Console.WriteLine("Hello World!");
