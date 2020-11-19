@@ -10,7 +10,7 @@ namespace middlewareExec6.Cliente
         public static void run()
         {
             LookupProxy lookupProxy = LookupProxy.GetInstance();
-            CalculadoraProxy calculadora = new CalculadoraProxy(lookupProxy.Lookup("Calculadora"));
+            ICalculadora calculadora = new CalculadoraProxy(lookupProxy.Lookup("Calculadora"));
             Console.WriteLine(calculadora.Eval("2*3"));
         }
     }
