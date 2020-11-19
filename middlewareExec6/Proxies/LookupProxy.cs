@@ -32,7 +32,7 @@ namespace middlewareExec6.Proxies
             return _instance;
         }
 
-        public AOR GetProxy(String proxy)
+        public AOR Lookup(String proxy)
         {
             AOR proxyDesired;
             if (!proxies.TryGetValue(proxy, out proxyDesired))
@@ -40,6 +40,11 @@ namespace middlewareExec6.Proxies
                 return null;
             }
             return proxyDesired;
+        }
+
+        public void Register(String proxy, AOR aor)
+        {
+            proxies.Add(proxy, aor);
         }
     }
 }
