@@ -24,7 +24,7 @@ namespace GreeterClient
     {
         public static List<long> executions = new List<long>();
         public static long amountOfTimeEllapsed = 0;
-        const int CLIENTS = 1;
+        const int CLIENTS = 10;
         public static void Main(string[] args)
         {
             for (int laco = 0; laco < 3; laco++)

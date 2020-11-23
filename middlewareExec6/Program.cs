@@ -6,7 +6,8 @@ namespace middlewareExec6
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Server.Server s = new Server.Server();
+            Cliente.Cliente.run(10);
         }
     }
 }

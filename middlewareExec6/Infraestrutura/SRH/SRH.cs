@@ -48,15 +48,11 @@ namespace middlewareExec6
             byte[] bytes = new Byte[1024];
             var client = (Socket)obj;
             var numBytes = client.Receive(bytes);
-            //data = Encoding.ASCII.GetString(bytes, 0, numBytes);
-            // Console.WriteLine("Servidor recebeu: {0}",data);
             try
             {
-                //usar o invoker
-                //CalculadorInvoker calculadorInvoker = new CalculadorInvoker();
-                //var retorno = calculadorInvoker.Invoke(bytes);
-                //retornar o resultador
-                //client.Send(retorno);
+                CalculadoraInvoker calculadoraInvoker = new CalculadoraInvoker();
+                var processed =  calculadoraInvoker.Invoke(bytes);
+                client.Send(processed);
             }
             catch (Exception e)
             {
