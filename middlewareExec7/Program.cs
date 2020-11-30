@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace middlewareExec6
+namespace middlewareExec7
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Server.Server s = new Server.Server();
+            Pool p = Pool.GetInstance();
             Cliente.Cliente.run(1);
         }
     }

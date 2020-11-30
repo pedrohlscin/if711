@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+using middlewareExec7.Proxies;
+
+namespace middlewareExec7
+{
+    class SRH
+    {
+        private const int PORT = 9099;
+        private static IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
+        private static IPAddress iPAddress = ipHost.AddressList[0];
+        private static IPEndPoint localEndPoint = new IPEndPoint(iPAddress, PORT);
+        private AOR aor = new AOR(iPAddress.ToString(), PORT);
+
+        public SRH()
+        {
+            LookupProxy proxy = LookupProxy.GetInstance();
+            proxy.Register("calculadora", aor);
+        }
+        public void ReceiveSend()
+        {
+            Socket listener = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                //associar servidor ao ip
+                listener.Bind(localEndPoint);
+                // tamanho máximo da queue de espera
+                listener.Listen(50);
+                while (true)
+                {
+                    //esperar conexões, a thread dorme enquanto aguarda
+                    Socket clientSocket = listener.Accept();
+                    var t = new Thread(handleReq);
+                    t.Start(clientSocket);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        private static void handleReq(object obj)
+        {
+            byte[] bytes = new Byte[1024];
+            var client = (Socket)obj;
+            var numBytes = client.Receive(bytes);
+            try
+            {
+                CalculadoraInvoker calculadoraInvoker = new CalculadoraInvoker();
+                var processed =  calculadoraInvoker.Invoke(bytes);
+                client.Send(processed);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+    }
+}
